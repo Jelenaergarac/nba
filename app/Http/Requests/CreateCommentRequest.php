@@ -24,8 +24,8 @@ class CreateCommentRequest extends FormRequest
     public function rules()
     {
         return [
-            'content' => 'required|min:10',
-            'user_id' => auth()->id()
+            'content' => 'required|string|min:10'
+            
         ];
     }
 }

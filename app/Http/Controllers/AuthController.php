@@ -8,6 +8,9 @@ use App\Models\User;
 use App\Notifications\WelcomeEmailNotification;
 use Illuminate\Support\Facades\Hash;
 
+use Illuminate\Auth\Events\Registered;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
+
 class AuthController extends Controller
 {
     public function registerForm(){
@@ -25,6 +28,8 @@ class AuthController extends Controller
 
         $user = User::create($data);
         auth()->login($user);
+
+        event(new Registered($user));
 
         $user->notify(new WelcomeEmailNotification());
 
@@ -45,4 +50,9 @@ class AuthController extends Controller
         session()->flush();
         return back();
     }
+    public function getEmailVerificationNotice()
+    {
+        return view('auth.emailvefirication');
+    }
+ 
 }

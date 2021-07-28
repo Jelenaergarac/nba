@@ -41,5 +41,8 @@ Route::group([
     Route::post('/logout', [AuthController::class, 'logout']);
     Route::post('/teams/{team}/comments', [CommentsController::class, 'store'])->name('team.comment');
 
+  
+
 
 });
+
