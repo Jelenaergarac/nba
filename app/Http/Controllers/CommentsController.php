@@ -17,6 +17,6 @@ class CommentsController extends Controller
         $comment->team()->associate($team);
         $comment->user()->associate($user);
         $comment->save();
-        return redirect('/');
+        return back();
     }
 }
