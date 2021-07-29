@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Team;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class TeamsController extends Controller
 {
@@ -14,8 +16,11 @@ class TeamsController extends Controller
      */
     public function index()
     {
+     
         // $teams = Team::all();
         // return view('teams.teams', ['teams' => $teams]);
+
+
 
         $teams =Team::with('players', 'user', 'comments')->get();
         return view('teams.teams', compact('teams'));
